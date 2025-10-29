@@ -3,122 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ranking Vitalinho Ao Vivo</title>
+  <title>🏆 Rankings Vitalinho Ao Vivo 🏆</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #fafafa;
-      text-align: center;
+      background-color: #f5f5f5;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
     header {
-      background: #1abc9c;
+      background-color: #16a085;
       color: white;
-      padding: 20px 0;
-      font-size: 28px;
+      padding: 15px 0;
+      font-size: 1.5em;
       font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     main {
       margin: 30px auto;
-      max-width: 900px;
-      background: white;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 800px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
     }
     img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      width: 90%;
+      max-width: 750px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
     }
-    footer {
-      margin-top: 40px;
-      color: #777;
-      font-size: 14px;
-      padding-bottom: 20px;
-    }
-    /* Contador de visitas */
     .counter-box {
-      text-align: center;
-      margin: 40px 0 20px 0;
-    }
-    .counter-label {
-      font-size: 20px;
+      margin-top: 20px;
+      font-size: 18px;
       color: #555;
-      margin-bottom: 8px;
     }
-    #counter {
-      font-size: 42px;
+    .counter {
+      font-size: 40px;
       font-weight: bold;
       color: #e74c3c;
-      background: #f1f1f1;
-      display: inline-block;
-      padding: 18px 40px;
-      border-radius: 12px;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-      transition: all 0.5s ease;
+      display: block;
+      margin-top: 10px;
+    }
+    footer {
+      margin-top: 30px;
+      padding: 10px;
+      color: #777;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-
   <header>🏆 Rankings Vitalinho Ao Vivo 🏆</header>
 
   <main>
-    <h2>Ranking Atual</h2>
-    <!-- Imagem principal do ranking -->
-  <img id="ranking" src="Ranking.jpg?v=1761757183503" alt="Ranking Atualizado">
+    <h2>Ranking Finals</h2>
+    <img src="ranking-finals-vivo.jpg" alt="Ranking Finals Atualizado">
 
-    <!-- Contador de visitas -->
+    <h2>Ranking Vitallis</h2>
+    <img src="ranking-vitallis-vivo.jpg" alt="Ranking Vitallis Atualizado">
+
     <div class="counter-box">
-      <div class="counter-label">👀 Visualizações do site:</div>
-      <div id="counter">0</div>
+      👁️ Visualizações do site:
+      <span class="counter" id="visitas">0</span>
     </div>
   </main>
 
-  <footer>
-    Atualizado automaticamente — © Oberdan Vitalinho
-  </footer>
+  <footer>Atualizado automaticamente — © Oberdan Vitalinho</footer>
 
   <script>
-    // ====== 1. Evitar cache das imagens ======
-    document.addEventListener('DOMContentLoaded', () => {
-      const imagens = document.querySelectorAll('img');
-      const timestamp = new Date().getTime();
-      imagens.forEach(img => {
-        if (img.src.includes(window.location.hostname)) {
-          img.src = img.src + '?v=' + timestamp;
-        }
-      });
-    });
+    // === Contador de visitas (usando localStorage) ===
+    const contador = document.getElementById("visitas");
+    let visitas = localStorage.getItem("visitasSite");
 
-    // ====== 2. Contador animado de visitas ======
-    function animateCounter(element, target) {
-      let current = 0;
-      const increment = Math.max(1, Math.floor(target / 50)); // velocidade da animação
-      const interval = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.innerText = target;
-          clearInterval(interval);
-        } else {
-          element.innerText = current;
-        }
-      }, 20);
+    if (!visitas) {
+      visitas = 1;
+    } else {
+      visitas = parseInt(visitas) + 1;
     }
 
-    fetch('https://api.countapi.xyz/hit/oberdan-vitalinho/vitalinho-ranking')
-      .then(res => res.json())
-      .then(data => {
-        const counterElement = document.getElementById('counter');
-        animateCounter(counterElement, data.value);
-      })
-      .catch(err => console.error('Erro ao carregar contador:', err));
+    localStorage.setItem("visitasSite", visitas);
+    contador.textContent = visitas;
   </script>
-
 </body>
 </html>
