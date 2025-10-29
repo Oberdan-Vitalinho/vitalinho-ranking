@@ -59,3 +59,72 @@
       width: 100%;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      background: #000;
+      transition: opacity 0.3s ease;
+    }
+
+    footer {
+      background: #007bff;
+      color: #fff;
+      padding: 15px;
+      font-size: 0.9rem;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+    }
+
+    .atualizacao {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🏆 Ranking Vitalinho Ao Vivo</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>🎾 Ranking Vitallis 2025</h2>
+      <img src="ranking vitallis ao vivo.jpg?v=3" alt="Ranking Vitallis 2025">
+    </section>
+
+    <section>
+      <h2>🔥 Ranking Finals</h2>
+      <img src="ranking finals ao vivo.jpg?v=3" alt="Ranking Finals 2025">
+    </section>
+
+    <div class="atualizacao" id="dataAtualizacao"></div>
+  </main>
+
+  <footer>
+    Atualizado automaticamente — © Vitalinho Rankings
+  </footer>
+
+  <script>
+    // Função para mostrar a data e hora local automaticamente
+    function atualizarDataHora() {
+      const agora = new Date();
+      const opcoesData = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      const opcoesHora = { hour: '2-digit', minute: '2-digit' };
+      const data = agora.toLocaleDateString('pt-BR', opcoesData);
+      const hora = agora.toLocaleTimeString('pt-BR', opcoesHora);
+      document.getElementById("dataAtualizacao").textContent =
+        `📅 Atualizado em: ${data} às ${hora}`;
+    }
+
+    atualizarDataHora();
+  </script>
+</body>
+</html>
