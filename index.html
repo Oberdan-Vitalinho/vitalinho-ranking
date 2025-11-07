@@ -63,10 +63,10 @@
 
   <main>
     <h2>Ranking Finals</h2>
-    <img src="ranking-finals-vivo.jpg" alt="Ranking Finals Atualizado">
+    <img id="ranking-finals" alt="Ranking Finals Atualizado">
 
     <h2>Ranking Vitallis</h2>
-    <img src="ranking-vitallis-vivo.jpg" alt="Ranking Vitallis Atualizado">
+    <img id="ranking-vitallis" alt="Ranking Vitallis Atualizado">
 
     <div class="counter-box">
       👁️ Visualizações do site:
@@ -77,7 +77,12 @@
   <footer>Atualizado automaticamente — © Oberdan Vitalinho</footer>
 
   <script>
-    // === Contador de visitas (usando localStorage) ===
+    // === Atualiza automaticamente as imagens, ignorando cache ===
+    const now = new Date().getTime();
+    document.getElementById('ranking-finals').src = `ranking-finals-vivo.jpg?v=${now}`;
+    document.getElementById('ranking-vitallis').src = `ranking-vitallis-vivo.jpg?v=${now}`;
+
+    // === Contador de visitas local ===
     const contador = document.getElementById("visitas");
     let visitas = localStorage.getItem("visitasSite");
 
