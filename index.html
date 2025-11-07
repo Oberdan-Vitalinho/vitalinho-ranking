@@ -1,99 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏆 Rankings Vitalinho Ao Vivo 🏆</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background-color: #16a085;
-      color: white;
-      padding: 15px 0;
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-    main {
-      margin: 30px auto;
-      padding: 20px;
-      max-width: 800px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      color: #333;
-      margin-bottom: 10px;
-    }
-    img {
-      width: 90%;
-      max-width: 750px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      margin-bottom: 25px;
-    }
-    .counter-box {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #555;
-    }
-    .counter {
-      font-size: 40px;
-      font-weight: bold;
-      color: #e74c3c;
-      display: block;
-      margin-top: 10px;
-    }
-    footer {
-      margin-top: 30px;
-      padding: 10px;
-      color: #777;
-      font-size: 0.9em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Rankings Vitalinho Ao Vivo 🏆</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #16a085;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        main {
+            margin-top: 40px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            padding: 40px;
+        }
+        h2 {
+            color: #333;
+        }
+        img {
+            max-width: 90%;
+            border-radius: 12px;
+            margin-top: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 14px;
+        }
+        .counter-box {
+            margin-top: 25px;
+            display: inline-block;
+            background: #f1f1f1;
+            border-radius: 12px;
+            padding: 10px 25px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
-  <header>🏆 Rankings Vitalinho Ao Vivo 🏆</header>
+    <header>🏆 Rankings Vitalinho Ao Vivo 🏆</header>
 
-  <main>
-    <h2>Ranking Finals</h2>
-    <img id="ranking-finals" alt="Ranking Finals Atualizado">
+    <main>
+        <h2>Ranking Atual</h2>
 
-    <h2>Ranking Vitallis</h2>
-    <img id="ranking-vitallis" alt="Ranking Vitallis Atualizado">
+        <!-- Imagem principal do ranking -->
+        <img id="ranking" alt="Ranking Atualizado">
 
-    <div class="counter-box">
-      👁️ Visualizações do site:
-      <span class="counter" id="visitas">0</span>
-    </div>
-  </main>
+        <!-- Contador de visitas -->
+        <div>
+            <p>👀 Visualizações do site:</p>
+            <div class="counter-box" id="visit-count">0</div>
+        </div>
+    </main>
 
-  <footer>Atualizado automaticamente — © Oberdan Vitalinho</footer>
+    <footer>
+        Atualizado automaticamente — © Oberdan Vitalinho
+    </footer>
 
-  <script>
-    // === Atualiza automaticamente as imagens, ignorando cache ===
-    const now = new Date().getTime();
-    document.getElementById('ranking-finals').src = `ranking-finals-vivo.jpg?v=${now}`;
-    document.getElementById('ranking-vitallis').src = `ranking-vitallis-vivo.jpg?v=${now}`;
+    <script>
+        // 🔹 Cache buster dinâmico (gera um número único toda vez)
+        const img = document.getElementById("ranking");
+        img.src = "ranking-finals-vivo2.jpg?v=" + new Date().getTime();
 
-    // === Contador de visitas local ===
-    const contador = document.getElementById("visitas");
-    let visitas = localStorage.getItem("visitasSite");
-
-    if (!visitas) {
-      visitas = 1;
-    } else {
-      visitas = parseInt(visitas) + 1;
-    }
-
-    localStorage.setItem("visitasSite", visitas);
-    contador.textContent = visitas;
-  </script>
+        // 🔹 Contador de visitas local (simples e funcional)
+        let count = localStorage.getItem("visitCount") || 0;
+        count++;
+        localStorage.setItem("visitCount", count);
+        document.getElementById("visit-count").innerText = count;
+    </script>
 </body>
 </html>
